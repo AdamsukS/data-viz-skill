@@ -1,6 +1,6 @@
 # Choose a starting template
 
-Select by the user's variables and communication goal, not the biological titles of the source examples. Read only the selected figure's schema and implementation. The previews in [the gallery](GALLERY.en.md) show the existing composition; they do not limit the new chart's subject or design.
+Select by the user's variables and communication goal, not the biological titles of the source examples. Prefer the valid template requiring the fewest edits, including one with removable layers for unavailable data. Read its schema and implementation, then copy its actual code. The previews in [the gallery](GALLERY.en.md) are layout references to preserve by default, not merely aesthetic inspiration.
 
 | IDs | Data / question | Reusable encoding | Adaptation to inspect |
 |---|---|---|---|
@@ -17,10 +17,21 @@ Select by the user's variables and communication goal, not the biological titles
 | [18](../figures/figure18/README.en.md) | Many grouped summaries across facets | Faceted boxes | Five-number ordering, group/panel labels and sample counts |
 | [19](../figures/figure19/README.en.md) | Several linked measurements on common entities | Correlation, paired endpoints, bubbles and bars | Keep entity ordering consistent; use only panels supported by actual data; adapt fixed labels and correlations |
 
-## Adapt or create
+## Reuse first; edit only what the data need
 
-Use a direct template for matching encodings and manageable category counts. Modify the copied `plot.py` when fixed positions, hardcoded labels, group loops or axis choices no longer fit. `style.json` is not a universal layout engine.
+Replace data and labels first. Modify the copied `plot.py` only where grouping loops, input handling, data layers or hardcoded labels need to change. Keep unaffected axes positions, panel order, typography and color assignments. `style.json` is not a universal layout engine; changing it alone may not remove a required CSV load or a fixed group loop.
 
-For an unfamiliar chart, start from the nearest primitives in `vizlib/common.py` or one or two figure modules. A new slope chart can borrow paired endpoints from figure 19; an operational dashboard can combine figure 4's lines and figure 12's matrix without biological labels. Keep only encodings relevant to the user's question. A simpler single panel may communicate more than a dense composite.
+| Situation | Preferred local adaptation |
+|---|---|
+| Figure 07 has group means but no sample-level observations | Keep its bars and layout; remove sample-dot code and unsupported error bars; adapt the schema to supplied summaries |
+| Figure 04 has time-series data but no inset summary | Keep the main axes, line palette and legend; remove the inset and its auxiliary-data load |
+| Figure 19 has only some of its linked metrics | Retain the supported panels and entity ordering; disable missing panels and their labels/loads |
+| A selected template has fewer groups than its example | Remove absent groups from loops, ticks and legends; retain the remaining groups' colors and panel placement |
+| There are a few extra series or an extra metric | Extend the existing series/legend or add a compatible layer locally; do not redesign the full figure |
+| Many new independent variables or relationships cannot fit through local edits | Explain what the original composition cannot express, then extend or create a composition using the nearest existing code |
+
+Missing data are not zero values. Derive summaries from actual observations only when justified; otherwise omit the unsupported layer. If the missing variable is essential to the encoding itself, use another bundled template or request the input. Never keep example observations to make the original layout look full.
+
+New designs are exceptional: use them for explicit user requests or substantial new information that cannot be represented accurately and readably by adapting a template. A different domain, renamed columns or missing auxiliary files is not sufficient. Even for a new composition, reuse existing modules and `vizlib/common.py` instead of rebuilding equivalent drawing logic.
 
 Use [the style guide](STYLE_GUIDE.md) for palette, hierarchy and information density. For schemas, use the per-figure **Files and columns** sections. The **Source-study context** sections are background, not input requirements for other domains.

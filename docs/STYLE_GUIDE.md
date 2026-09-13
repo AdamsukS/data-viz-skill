@@ -1,10 +1,10 @@
 # Visual language for adapted and new charts
 
-Use the user's requested style first. Otherwise borrow these concrete traits from the bundled Python figures, retaining legibility and the meaning of the data. This is a reusable design vocabulary inspired by the reconstructed examples, not a claim of an official Nature style standard.
+Use the user's requested style first. Otherwise preserve the selected template's existing code, composition and visual settings. Apply this guide to necessary local edits; it is not an invitation to redesign a working template. New compositions are reserved for substantial new information that cannot fit through local edits or for explicit user requests. This is a reusable visual language, not an official Nature style standard.
 
 ## Color
 
-Use a small, stable palette for categorical comparisons. Existing starting palettes are:
+Keep the selected template's palette and retained categories' color assignments by default. Extend it only for added categories or a necessary encoding change. Available palettes are:
 
 | Starting point | Colors | Typical role |
 |---|---|---|
@@ -20,9 +20,9 @@ Retain category-to-color mapping across panels. Use a sequential palette for mag
 
 Start with a white background, restrained spines, sparse purposeful ticks, and dark labels. The examples combine observations with a summary (points + bars, distributions + boxes) and align complementary panels to save repeated labels. Keep shared category order and scales wherever comparisons require them.
 
-Use the selected template's typography and line widths as the initial values, then assess at final display size. Canvas coordinates in `context.ax([left, top, width, height])` are pixels; Matplotlib text and line sizes are point-based. Enlarging or rearranging a canvas needs coordinated spacing and typography changes, not just copying positions.
+Preserve the selected template's typography, line widths, axes rectangles, panel order and canvas proportions. Removing a missing-data layer does not justify moving unrelated panels. If a removed panel leaves an unusable gap, reclaim space locally while retaining the remaining arrangement. Canvas coordinates in `context.ax([left, top, width, height])` are pixels; Matplotlib text and line sizes are point-based.
 
-Maintain enough space for labels, units, legends and colorbars. For dense figures, prefer aligned facets and shared legends over shrinking text. If too many observations overlap, consider transparency, smaller markers, binning or aggregation with a stated rule. Do not silently drop observations to mimic a reference density.
+Maintain enough space for labels, units, legends and colorbars. Resolve overlap locally with spacing, label wrapping or marker adjustments before enlarging the canvas or creating facets. Aggregation or binning needs a stated rule. Do not silently drop observations or fill missing data to mimic a reference density. Change the layout only for a demonstrated readability/encoding problem, substantial new information, or a user request.
 
 ## Quantitative encodings
 
@@ -35,4 +35,4 @@ Maintain enough space for labels, units, legends and colorbars. For dense figure
 
 ## Final inspection
 
-Inspect the rendered PNG at the intended reading size, then zoom to investigate clipping or overlaps. Check the smallest labels, longest category names, extreme values, both ends of color/size legends, and the relationship between data and any inset. Verify export dimensions; inspect the SVG/PDF when vector editing or print use matters. Deliver executable code and a documented data mapping so style changes remain reproducible.
+Compare the rendered composition against the selected preview and account for each layout change. Inspect at the intended reading size, then zoom to investigate clipping or overlaps. Check the smallest labels, longest category names, extreme values, color/size legends, and any inset. Removed layers must leave no stale legend entries or statistical text. Verify export dimensions; inspect SVG/PDF when vector editing or print use matters. Deliver the adapted code, its template origin and a documented data mapping.

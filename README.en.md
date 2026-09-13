@@ -8,21 +8,23 @@ git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git "${CODEX_HOME
 
 An agent can run the command above to download the complete skill into Codex's skill directory. Git is required; an existing destination is left untouched. Use `$data-viz` in the next conversation turn after installation. Installation only downloads code and assets; Python dependencies are installed in the actual plotting workspace.
 
-**Let an AI choose charts from the data, adapt a template, or design something new.** This skill bundles 19 runnable Python chart templates with separate data, palettes, layouts, schemas and previews. An agent can reuse them directly, reorganize information and panels, or borrow their visual language for a new chart. Inputs can come from business, engineering, surveys or any other domain that fits the chosen schema.
+**Let an AI directly reuse plotting code while preserving the original layout.** This skill bundles 19 runnable Python chart templates with data, palettes, layouts, schemas and previews. Its core capability is connecting user data to existing code and making necessary local edits: remove unsupported elements for missing data, and extend the same figure for modest additions. Create a new composition only when substantial new variables or relationships cannot be expressed clearly through local edits, or when the user explicitly requests one. Data can come from business, engineering, surveys or any other domain.
 
 ## Use the skill
 
 Copy this prompt directly to your agent; it includes the repository URL:
 
-> Use the Data Viz Skill from https://github.com/AdamsukS/data-viz-skill. If it is not installed, download it using the repository README's command and read SKILL.md; otherwise use the installed $data-viz. Inspect my data and visualization requirements, then choose a suitable template or create a new chart inspired by the existing code, palettes, layouts and information density. Deliver images, reusable Python code, data-format documentation and replay commands.
+> Use the Data Viz Skill from https://github.com/AdamsukS/data-viz-skill. If it is not installed, download it using the repository README's command and read SKILL.md; otherwise use the installed $data-viz. Inspect my data and visualization requirements, then copy and directly edit the best-fitting template's Python code. Preserve layout, palette and information density unless changes are necessary. Remove unsupported elements for missing inputs and extend the same figure for modest additions. Create a new composition only if substantial new information cannot fit or I explicitly request it. Deliver images, reusable Python code, data-format documentation and replay commands.
 
 Example tasks:
 
 > Use $data-viz from https://github.com/AdamsukS/data-viz-skill to inspect this sales dataset and visualize regional differences and monthly trends. Deliver images and reusable Python code with replaceable data.
 
-> Use $data-viz from https://github.com/AdamsukS/data-viz-skill to design a new multi-panel figure for these device metrics, borrowing the templates' restrained colors and compact layouts without restricting yourself to existing chart types.
+> Use $data-viz from https://github.com/AdamsukS/data-viz-skill to directly reuse the closest multi-panel template for these device metrics. Remove panels for unavailable metrics while preserving the remaining arrangement; extend locally for a few extra metrics rather than redesigning the whole figure.
 
-The agent inspects the data and communication goal, chooses **reuse, adaptation or creation**, prepares code and data in a separate workspace, renders and inspects the result, then delivers figures, replay commands, data mappings and reusable code. Installed templates remain intact by default, and original example statistics are not transferred to new data.
+The agent follows **replace data and labels → edit existing code locally → add/remove elements within the layout → create a composition only when necessary**. It renders in a separate workspace and compares against the template preview to catch incidental redesigns. Delivery identifies the reused module, added/removed elements and reasons for layout changes. Installed templates remain intact, and example statistics are not applied to new data.
+
+Missing data are not zeros: means can retain bars without sample dots; absent uncertainty should remove error bars; a missing inset should remove both the inset and its CSV-loading code. The renderer does not automatically support every missing-column case. The agent must adapt the copied code's data dependencies instead of inserting fictional values to preserve appearance.
 
 - [Skill entrypoint](SKILL.md): data inspection, selection, drawing, validation and delivery.
 - [Template selection](docs/TEMPLATE_SELECTION.md): choose by data structure and communication goal.
@@ -43,7 +45,7 @@ python3 -m venv .venv
 .venv/bin/python render.py --figure 7 --format png svg pdf --annotations none
 ```
 
-Select multiple templates with `--figures 4 12 19`, or omit `--figures` for a blank workspace and create a chart with `scripts/new_figure.py`. This example renders bundled demonstration values; for actual work the agent prepares matching inputs and updates labels, units and ranges.
+Select multiple templates with `--figures 4 12 19`, and default to an existing template. Omit `--figures` for a blank workspace and use `scripts/new_figure.py` only after establishing the need for a new composition. This example renders bundled demonstration values; for actual work the agent prepares matching inputs and updates labels, units and ranges.
 
 ## Template library and manual use
 
