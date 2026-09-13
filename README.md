@@ -12,11 +12,15 @@ git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git "${CODEX_HOME
 
 ## 如何使用
 
-安装后可以直接对 Agent 说：
+可以把下面这段话直接复制给 Agent，仓库地址也已包含在指令中：
 
-> 使用 $data-viz 分析这份销售数据，选择适合展示地区差异和月度趋势的图式，输出图片与可替换数据的 Python 代码。
+> 请使用 https://github.com/AdamsukS/data-viz-skill 中的 Data Viz Skill。如果尚未安装，请按仓库 README 的命令下载，并阅读 SKILL.md；如果已安装，直接使用 $data-viz。根据我提供的数据和可视化要求，选择合适的模板，或参考已有代码、配色、布局和信息密度创造新图。请交付图片、可复用的 Python 代码、数据格式说明和运行命令。
 
-> 使用 $data-viz，参考模板的低饱和配色和紧凑布局，为这些设备指标设计一个新的多面板图，不必局限于已有图式。
+具体任务示例：
+
+> 使用 https://github.com/AdamsukS/data-viz-skill 提供的 $data-viz 分析这份销售数据，选择适合展示地区差异和月度趋势的图式，输出图片与可替换数据的 Python 代码。
+
+> 使用 https://github.com/AdamsukS/data-viz-skill 提供的 $data-viz，参考模板的低饱和配色和紧凑布局，为这些设备指标设计一个新的多面板图，不必局限于已有图式。
 
 Agent 会先检查数据结构和表达目标，再选择**复用、改造或新建**，在独立工作目录中准备数据与代码，渲染并检查结果，最后交付图像、运行命令、数据映射和可复用代码。默认保持安装目录中的模板不变；不会把原案例的统计值套用到新数据上。
 

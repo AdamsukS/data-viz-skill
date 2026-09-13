@@ -12,11 +12,15 @@ An agent can run the command above to download the complete skill into Codex's s
 
 ## Use the skill
 
-After installation, ask your agent:
+Copy this prompt directly to your agent; it includes the repository URL:
 
-> Use $data-viz to inspect this sales dataset and visualize regional differences and monthly trends. Deliver images and reusable Python code with replaceable data.
+> Use the Data Viz Skill from https://github.com/AdamsukS/data-viz-skill. If it is not installed, download it using the repository README's command and read SKILL.md; otherwise use the installed $data-viz. Inspect my data and visualization requirements, then choose a suitable template or create a new chart inspired by the existing code, palettes, layouts and information density. Deliver images, reusable Python code, data-format documentation and replay commands.
 
-> Use $data-viz to design a new multi-panel figure for these device metrics, borrowing the templates' restrained colors and compact layouts without restricting yourself to existing chart types.
+Example tasks:
+
+> Use $data-viz from https://github.com/AdamsukS/data-viz-skill to inspect this sales dataset and visualize regional differences and monthly trends. Deliver images and reusable Python code with replaceable data.
+
+> Use $data-viz from https://github.com/AdamsukS/data-viz-skill to design a new multi-panel figure for these device metrics, borrowing the templates' restrained colors and compact layouts without restricting yourself to existing chart types.
 
 The agent inspects the data and communication goal, chooses **reuse, adaptation or creation**, prepares code and data in a separate workspace, renders and inspects the result, then delivers figures, replay commands, data mappings and reusable code. Installed templates remain intact by default, and original example statistics are not transferred to new data.
 
