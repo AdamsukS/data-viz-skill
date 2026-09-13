@@ -1,20 +1,57 @@
-# Scientific Figure Gallery
+# Data Viz Skill
+
+```bash
+git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git "${CODEX_HOME:-$HOME/.codex}/skills/data-viz"
+```
 
 [中文](README.md) | **English**
 
-Reusable Python chart templates for data from any field. The gallery currently contains 19 reconstructed examples, each with **its own plotting code, CSV demonstration data, JSON style, bilingual data documentation and preview**. Replace data, add chart types, and export PNG, SVG or PDF through a common runner.
+An agent can run the command above to download the complete skill into Codex's skill directory. Git is required; an existing destination is left untouched. Use `$data-viz` in the next conversation turn after installation. Installation only downloads code and assets; Python dependencies are installed in the actual plotting workspace.
 
-These are approximate reconstructions from raster references, **not pixel-identical reproductions**. Original experimental data were not supplied. CSVs include screenshot estimates, digitized values, synthetic observations and fitted demonstration curves; phylogenetic topologies are synthetic too. Every figure records its provenance. Example values cannot support the original studies' statistical conclusions.
+**Let an AI choose charts from the data, adapt a template, or design something new.** This skill bundles 19 runnable Python chart templates with separate data, palettes, layouts, schemas and previews. An agent can reuse them directly, reorganize information and panels, or borrow their visual language for a new chart. Inputs can come from business, engineering, surveys or any other domain that fits the chosen schema.
 
-[Browse previews](docs/GALLERY.en.md) · [Data formats and source-study context](docs/DATA.en.md) · [Add a figure](CONTRIBUTING.en.md)
+## Use the skill
+
+After installation, ask your agent:
+
+> Use $data-viz to inspect this sales dataset and visualize regional differences and monthly trends. Deliver images and reusable Python code with replaceable data.
+
+> Use $data-viz to design a new multi-panel figure for these device metrics, borrowing the templates' restrained colors and compact layouts without restricting yourself to existing chart types.
+
+The agent inspects the data and communication goal, chooses **reuse, adaptation or creation**, prepares code and data in a separate workspace, renders and inspects the result, then delivers figures, replay commands, data mappings and reusable code. Installed templates remain intact by default, and original example statistics are not transferred to new data.
+
+- [Skill entrypoint](SKILL.md): data inspection, selection, drawing, validation and delivery.
+- [Template selection](docs/TEMPLATE_SELECTION.md): choose by data structure and communication goal.
+- [Style guide](docs/STYLE_GUIDE.md): palettes, hierarchy, information density and new designs.
+- [Data formats and source-study context](docs/DATA.en.md) · [Add a template](CONTRIBUTING.en.md).
+
+Other agents that support `SKILL.md` can also use this self-contained directory. For example, run `git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git ./data-viz` and ask the agent to read its `SKILL.md`. Follow the target agent's configuration for automatic skill discovery.
+
+## Create a plotting workspace
+
+Copy figure 7 and the supporting code into a fresh directory. This leaves the installed skill intact and refuses to overwrite an existing destination:
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/data-viz/scripts/prepare_workspace.py" --out ./visualization --figures 7
+cd visualization
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python render.py --figure 7 --format png svg pdf --annotations none
+```
+
+Select multiple templates with `--figures 4 12 19`, or omit `--figures` for a blank workspace and create a chart with `scripts/new_figure.py`. This example renders bundled demonstration values; for actual work the agent prepares matching inputs and updates labels, units and ranges.
+
+## Template library and manual use
+
+The initial examples are approximate reconstructions from raster references, **not pixel-identical reproductions**. Original experimental data were not supplied. CSVs include estimates, digitized values, synthetic observations and fitted demonstration curves; tree topologies are synthetic too. Per-figure metadata records provenance, and demonstration values cannot support the original studies' conclusions.
 
 ## Quick start
 
 Python 3.10+ is required. Run commands from the repository root:
 
 ```bash
-git clone https://github.com/AdamsukS/scientific-figure-gallery.git
-cd scientific-figure-gallery
+git clone https://github.com/AdamsukS/data-viz-skill.git
+cd data-viz-skill
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
@@ -38,6 +75,10 @@ python -m figures.figure12.plot --out my_output --format pdf
 `figures/figure07/plot.py` contains that figure's actual `draw(context, rows)` implementation, rather than delegating to a central function containing every chart. Small shared canvas, CSV, boxplot and KDE helpers live in `vizlib/common.py`. The batch runner discovers figure folders automatically.
 
 ```text
+SKILL.md                 # Agent skill entrypoint
+agents/openai.yaml       # Agent UI metadata
+docs/TEMPLATE_SELECTION.md # Data-driven chart selection
+docs/STYLE_GUIDE.md       # Visual language for new charts
 figures/
   figure07/
     plot.py               # Actual drawing code for this figure
@@ -52,6 +93,7 @@ figures/
 vizlib/common.py          # Small shared plotting helpers
 render.py                 # Discovery and batch export
 check_reuse.py            # Data replacement, export, metadata and extension checks
+scripts/prepare_workspace.py # Copy templates into a fresh user project
 scripts/new_figure.py     # Create a new figure folder
 scripts/build_gallery.py  # Refresh bilingual catalogs
 ```
@@ -289,7 +331,10 @@ python check_reuse.py
 
 ```bash
 python check_reuse.py
+python check_skill.py
 ```
+
+`check_skill.py` also uses service-latency data in an isolated workspace to verify standalone PNG/SVG/PDF exports, chart creation from a blank project, and protection against overwriting existing directories.
 
 The check renders original and modified CSVs for every figure, verifies dimensions, confirms SVGs contain no embedded bitmaps, checks that data changes affect the image and disable old annotations, and validates documentation, fields and fingerprints. It also creates and runs a new figure in a temporary project to verify the extension workflow. GitHub Actions runs the same checks on pushes and pull requests.
 

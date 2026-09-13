@@ -1,20 +1,57 @@
-# Scientific Figure Gallery
+# Data Viz Skill
+
+```bash
+git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git "${CODEX_HOME:-$HOME/.codex}/skills/data-viz"
+```
 
 **中文** | [English](README.en.md)
 
-可用于不同领域数据的 Python 可复用绘图案例库。当前收录 19 张复现图，每张图拥有**独立绘图代码、CSV 示例数据、JSON 样式、双语数据说明和预览图**。支持替换数据和新增图式，统一导出 PNG、SVG、PDF。
+上面的命令可由 Agent 在终端直接执行，将完整 Skill 下载到 Codex 的技能目录；需要 Git，目标目录已存在时会停止，避免覆盖已有修改。安装后在下一轮对话中使用 `$data-viz`。安装只下载代码与素材，Python 依赖在实际绘图工作目录中安装。
 
-这些案例来自位图参考的近似重绘，**不是像素完全一致的复刻**。当前没有取得原始实验数据；CSV 包括截图估读、数字化提取、模拟观测和拟合示例曲线。树拓扑也是模拟的。每张图都明确记录了来源，示例值不能用于原研究的统计结论。
+**让 AI 根据数据选择图式、复用模板，或创造新的可视化。** 这个 Skill 包含 19 套可运行的 Python 图式，以及独立数据、配色、版式、字段说明和预览。AI 可以直接复用，也可以依据用户目标调整信息层次、组合面板，或沿用已有视觉语言创造新图。数据不限于生信，适用于业务、工程、调查及其他符合格式要求的数据。
 
-[查看全部预览](docs/GALLERY.md) · [数据格式与原图背景](docs/DATA.md) · [新增图表](CONTRIBUTING.md)
+## 如何使用
+
+安装后可以直接对 Agent 说：
+
+> 使用 $data-viz 分析这份销售数据，选择适合展示地区差异和月度趋势的图式，输出图片与可替换数据的 Python 代码。
+
+> 使用 $data-viz，参考模板的低饱和配色和紧凑布局，为这些设备指标设计一个新的多面板图，不必局限于已有图式。
+
+Agent 会先检查数据结构和表达目标，再选择**复用、改造或新建**，在独立工作目录中准备数据与代码，渲染并检查结果，最后交付图像、运行命令、数据映射和可复用代码。默认保持安装目录中的模板不变；不会把原案例的统计值套用到新数据上。
+
+- [Skill 指令入口](SKILL.md)：数据检查、选图、绘制、验证与交付流程。
+- [选图指南](docs/TEMPLATE_SELECTION.md)：按数据结构和表达目标选择模板。
+- [风格指南](docs/STYLE_GUIDE.md)：配色、视觉层次、信息密度与新图设计。
+- [数据格式与原图背景](docs/DATA.md) · [新增模板](CONTRIBUTING.md)。
+
+支持 `SKILL.md` 的其他 Agent 也可使用这个自包含目录。例如，使用 `git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git ./data-viz` 下载，然后让 Agent 阅读其中的 `SKILL.md`。具体技能发现路径以目标 Agent 的配置为准。
+
+## 创建绘图工作目录
+
+以下命令从安装的 Skill 复制第 7 张图及运行依赖代码到新目录，不会修改安装包，也不会覆盖已有目录：
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/data-viz/scripts/prepare_workspace.py" --out ./visualization --figures 7
+cd visualization
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python render.py --figure 7 --format png svg pdf --annotations none
+```
+
+可一次选择多个模板，如 `--figures 4 12 19`；省略 `--figures` 则创建空白绘图工程，后续用 `scripts/new_figure.py` 新建图式。上面的渲染使用附带演示数据；真实使用时由 Agent 按字段格式准备自己的数据并更新标签、单位和范围。
+
+## 模板库与手动运行
+
+这些初始案例是从位图参考近似重绘的，**不是像素完全一致的复刻**。当前没有取得原始实验数据；CSV 包括截图估读、数字化提取、模拟观测和拟合曲线，树拓扑也是模拟的。逐图元数据保留来源说明，示例值不能用于原研究的统计结论。
 
 ## 快速开始
 
 需要 Python 3.10+。以下命令在仓库根目录执行：
 
 ```bash
-git clone https://github.com/AdamsukS/scientific-figure-gallery.git
-cd scientific-figure-gallery
+git clone https://github.com/AdamsukS/data-viz-skill.git
+cd data-viz-skill
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
@@ -38,6 +75,10 @@ python -m figures.figure12.plot --out my_output --format pdf
 `figures/figure07/plot.py` 中是第 7 张图实际的 `draw(context, rows)` 绘图实现，不是调用一个包含所有图的中央大函数。共用的画布、CSV、箱线图、KDE 等小工具放在 `vizlib/common.py`；批量入口 `render.py` 自动发现图目录。
 
 ```text
+SKILL.md                 # Agent 技能入口
+agents/openai.yaml       # Agent 展示信息
+docs/TEMPLATE_SELECTION.md # 按数据与表达目标选图
+docs/STYLE_GUIDE.md       # 新图的配色、层次与信息密度
 figures/
   figure07/
     plot.py               # 这一张图的实际绘图代码
@@ -52,6 +93,7 @@ figures/
 vizlib/common.py          # 共用绘图小工具
 render.py                 # 自动发现与批量导出
 check_reuse.py            # 数据替换、导出、数据说明和扩展检查
+scripts/prepare_workspace.py # 将模板复制到独立用户工程
 scripts/new_figure.py     # 创建新图目录
 scripts/build_gallery.py  # 更新中英文目录
 ```
@@ -289,7 +331,10 @@ python check_reuse.py
 
 ```bash
 python check_reuse.py
+python check_skill.py
 ```
+
+`check_skill.py` 另外在隔离目录中接入服务延迟数据，验证独立模板导出 PNG/SVG/PDF、空白工程新建图表，以及已有目录不会被覆盖。
 
 检查会逐图渲染原始示例及修改后的 CSV，验证输出尺寸、SVG 未嵌入位图、数据变化确实改变图像、旧统计标注停用，以及文档、字段、指纹匹配。还会在临时项目中新建并运行一张图，验证新增流程。GitHub Actions 在推送和 PR 时执行相同检查。
 

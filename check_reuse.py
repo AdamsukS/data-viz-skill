@@ -49,7 +49,7 @@ def check_contract(folder):
 
 
 def check_links():
-    docs = [ROOT / name for name in ("README.md", "README.en.md", "CONTRIBUTING.md", "CONTRIBUTING.en.md")]
+    docs = [ROOT / name for name in ("README.md", "README.en.md", "CONTRIBUTING.md", "CONTRIBUTING.en.md", "SKILL.md")]
     docs += list((ROOT / "docs").glob("*.md")) + list((ROOT / "figures").glob("figure*/*.md"))
     for doc in docs:
         for target in re.findall(r"\]\(([^)]+)\)", doc.read_text(encoding="utf-8")):
