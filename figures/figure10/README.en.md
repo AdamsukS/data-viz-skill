@@ -12,13 +12,19 @@
 
 Original experimental data were not supplied, and a paper/DOI has not been verified. These values demonstrate a reusable chart layout; they are not original research measurements or a pixel-identical reproduction.
 
-## Original data you need
+## General data requirements
+
+**These templates are not limited to bioinformatics data.** Business, engineering, education, survey and other datasets can be used when they match the target CSV column names, types, table structure and numeric constraints. Biological names and units in the field tables describe the current examples; map their meanings to your own metrics while retaining the column names expected by the code.
+
+Start with “Files and columns”, prepare matching inputs, and update categories, labels, units and axis limits in `style.json`. Adjust fixed layouts in `plot.py` when group or panel counts change. The original-data and preprocessing notes below explain the source study context; reusing the chart does not require those biological raw data or analyses. Mathematical constraints still apply, such as positive values on log axes, nonnegative errors and acyclic trees.
+
+## Source-study context: original data
 
 - Original Newick/Nexus phylogeny with actual topology, branch lengths, rooting and unique tip IDs.
 - Phylum, WGS/MAG/SAG category and sample occurrence for each tip.
 - Occurrence thresholds and sample scope, tip ordering and legend counts.
 
-## From raw data to plotting inputs
+## Source-study context: preprocessing example
 
 Convert Newick/Nexus to node/parent/length edges and join tip metadata. Preserve rooting, length units and ordering; the renderer performs no phylogenetic inference.
 

@@ -10,6 +10,8 @@ Manual estimates of visible counts, bar heights and error bars. Occluded samples
 
 ![Outlined bars with sample points](../figures/figure01/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Sample/animal ID, treatment group and PCNA+ cell count for each replicate.
 - Counting region/length, normalization to 300 μm, replicate unit and exclusion rules.
 - Original comparison method, error-bar definition and multiple-testing settings.
@@ -21,6 +23,8 @@ Manual estimates of visible counts, bar heights and error bars. Occluded samples
 Approximate coordinates extracted from colored connected components. Overlapping points are lost; ellipses were visually estimated.
 
 ![PCoA with marginal boxplots](../figures/figure02/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - A sample-feature/abundance matrix or sample distance matrix, plus sample-to-group metadata.
 - Distance metric, transformations, PCoA method, axis 1/2 coordinates and explained variation.
@@ -34,6 +38,8 @@ Approximate coordinates extracted from screenshot colors. Some study assignments
 
 ![Multi-cohort PCoA composite](../figures/figure03/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Feature tables or a harmonized distance matrix; study, control/IBD group and ID per sample.
 - Cross-cohort normalization/batch handling, PCoA coordinates and explained variation.
 - Original PERMANOVA design including study effects, covariates and permutation restrictions.
@@ -45,6 +51,8 @@ Approximate coordinates extracted from screenshot colors. Some study assignments
 Time-course means and errors were visually estimated. Inset observations are seeded synthetic examples.
 
 ![Time course with iAUC insets](../figures/figure04/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Weight, baseline weight, treatment and subject ID for each animal/day, preserving longitudinal pairing.
 - Weight-change formula, Exposure/Cessation windows, and the iAUC integration and baseline definitions.
@@ -58,6 +66,8 @@ Synthetic observations sampled from a distribution estimated from screenshot col
 
 ![Half-violin raincloud plot](../figures/figure05/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Unique genome ID, species/group and BGC count per genome.
 - Genome inclusion criteria, BGC-calling method/version and the independent observation unit.
 - KDE bandwidth, boxplot whisker convention and outlier policy.
@@ -69,6 +79,8 @@ Synthetic observations sampled from a distribution estimated from screenshot col
 Manual estimates of visible values, means and errors, including the discontinuous y-axis.
 
 ![Broken-axis grouped bars](../figures/figure06/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Independent sample IDs and PR1a expression measurements for each genotype under Control/SA.
 - Expression normalization and reference gene; for qPCR, preserve target/reference Ct and calibrator samples.
@@ -82,6 +94,8 @@ Manual estimates of visible gene-expression values, means and errors.
 
 ![Gene-expression grouped bars](../figures/figure07/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - mRNA measurement and biological replicate ID for each gene/genotype at Day15.
 - Raw Ct/expression, reference controls and normalization; preserve technical-to-biological replicate mapping.
 - Group comparisons, multiplicity correction and error definition; a screenshot cannot recover the P-value calculation.
@@ -93,6 +107,8 @@ Manual estimates of visible gene-expression values, means and errors.
 Manual estimates of means and errors; example points are constructed from those summaries, not measured replicates.
 
 ![PARP1 variant grouped bars](../figures/figure08/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - GFP measurements and biological replicate IDs for each PARP1 variant and drug condition.
 - Background subtraction, −DOX/DMSO controls, fold-change normalization and pairing rules.
@@ -106,6 +122,8 @@ Manual estimates of two sets of summaries. The three reference-view points are m
 
 ![Dual-axis nested bars](../figures/figure09/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Indigoidine OD600 and Daptomycin concentration (μg/ml) for each strain/construct and independent replicate.
 - Assay, calibration curve, dilution factors and pairing between the two measurements.
 - Both sets of group means and error definitions, and the actual source of the 0.72/115 reference levels.
@@ -117,6 +135,8 @@ Manual estimates of two sets of summaries. The three reference-view points are m
 Synthetic topology, branch lengths and leaf metadata. No original phylogenetic relationships are available.
 
 ![Radial phylogeny with annotation rings](../figures/figure10/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Original Newick/Nexus phylogeny with actual topology, branch lengths, rooting and unique tip IDs.
 - Phylum, WGS/MAG/SAG category and sample occurrence for each tip.
@@ -130,6 +150,8 @@ Synthetic topology, branch lengths and heatmap annotations. No original phylogen
 
 ![Circular phylogeny with heatmap rings](../figures/figure11/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Original phylogeny with branch lengths, rooting, tip IDs and genus/phylum classifications.
 - Numerator/denominator and resulting BBAA detection fraction per tip, plus bsh presence/absence.
 - BBAA/bsh assay methods and thresholds, genus-sector boundaries and color-scale limits.
@@ -141,6 +163,8 @@ Synthetic topology, branch lengths and heatmap annotations. No original phylogen
 Bubble radii and colors were estimated on the screenshot grid, not recovered from an expression matrix.
 
 ![Grouped gene-expression dot plot](../figures/figure12/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Gene-by-cell/nucleus expression matrix, cell-type annotations and Early/Intermediate/Late gene groups.
 - Normalization/log/scaling method, expression-positive threshold, per-group denominator and missing-value handling.
@@ -154,6 +178,8 @@ Seeded synthetic correlated observations. Group counts follow screenshot labels,
 
 ![Log-log scatter with marginal histograms](../figures/figure13/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Genome ID, SAG/MAG/WGS group, genome length in bp and CDS count for every record.
 - Uncorrected measurements, the exact correction method and quality filters.
 - Actual sample counts, regression method, residual scale and design for residual group comparisons.
@@ -165,6 +191,8 @@ Seeded synthetic correlated observations. Group counts follow screenshot labels,
 Gaussian mixtures fitted approximately by eye to screenshot peak positions, widths and heights; not trajectory samples.
 
 ![Molecular-dynamics ridgelines](../figures/figure14/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Frame/time/replicate IDs and per-frame Core RMSD, A-loop RMSD and Distance 1 Δ values.
 - Reference structure, atom selection, alignment procedure, distance definition and Å units.
@@ -178,6 +206,8 @@ Gaussian-mixture demonstration curves approximating visible modes; not FCS event
 
 ![Flow-cytometry ridgeline matrix](../figures/figure15/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Original FCS files or per-event marker intensities, sample IDs, cell populations and −/+ stimulation condition.
 - Compensation matrix, gating hierarchy, live-cell/doublet filters and marker-to-channel mapping.
 - Log/logicle/arcsinh transformation and parameters, negative controls and density normalization.
@@ -189,6 +219,8 @@ Gaussian-mixture demonstration curves approximating visible modes; not FCS event
 Gaussian-mixture demonstration curves approximating visible modes; not original cell measurements.
 
 ![Cell-population expression ridgelines](../figures/figure16/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Per-cell/event CD161, NKG2A, CD31, CD8, CD57 and CD28 expression, with sample IDs and c1–c8 labels.
 - Vγ9Vδ2/Vδ1 definitions, preprocessing transformation, gating/clustering and composition of All cells.
@@ -202,6 +234,8 @@ Distribution outlines and box summaries were estimated from the screenshot; rug 
 
 ![Regional age-distribution rainclouds](../figures/figure17/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Dated sample ID, region and age in kyr BP; retain age uncertainty or calibrated probability distributions.
 - BP reference year, calibration, weights, distribution-aggregation method and KDE bandwidth.
 - Five-number summaries and rug locations/weights from the same observations; update all three plotting tables together.
@@ -214,6 +248,8 @@ Five-number summaries estimated by eye; displayed P values are unverified refere
 
 ![Evolutionary-age faceted boxplots](../figures/figure18/preview.png)
 
+Source-study context (these biological inputs are not required to reuse the chart):
+
 - Paralog-pair IDs, dN and dS or dN/dS, gene age and Reference/diapause assignment.
 - Alignment/substitution-rate estimation and filtering, dS=0 handling and age-bin definitions.
 - Box summaries computed from actual observations, whisker convention, comparison tests and adjusted P values.
@@ -225,6 +261,8 @@ Five-number summaries estimated by eye; displayed P values are unverified refere
 Correlations and KS bars were estimated manually; expression bubbles were estimated from the screenshot grid. No original cell-level data were recovered.
 
 ![Correlation, expression and proximity composite](../figures/figure19/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
 
 - Single-cell expression, cell types, WT/KO conditions, sample IDs and spatial coordinates or proximity measurements.
 - TGFβRII signature, P14 CD8 T-cell reference population, proximity/distance definition and correlation method.

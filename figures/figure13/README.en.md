@@ -12,13 +12,19 @@
 
 Original experimental data were not supplied, and a paper/DOI has not been verified. These values demonstrate a reusable chart layout; they are not original research measurements or a pixel-identical reproduction.
 
-## Original data you need
+## General data requirements
+
+**These templates are not limited to bioinformatics data.** Business, engineering, education, survey and other datasets can be used when they match the target CSV column names, types, table structure and numeric constraints. Biological names and units in the field tables describe the current examples; map their meanings to your own metrics while retaining the column names expected by the code.
+
+Start with “Files and columns”, prepare matching inputs, and update categories, labels, units and axis limits in `style.json`. Adjust fixed layouts in `plot.py` when group or panel counts change. The original-data and preprocessing notes below explain the source study context; reusing the chart does not require those biological raw data or analyses. Mathematical constraints still apply, such as positive values on log axes, nonnegative errors and acyclic trees.
+
+## Source-study context: original data
 
 - Genome ID, SAG/MAG/WGS group, genome length in bp and CDS count for every record.
 - Uncorrected measurements, the exact correction method and quality filters.
 - Actual sample counts, regression method, residual scale and design for residual group comparisons.
 
-## From raw data to plotting inputs
+## Source-study context: preprocessing example
 
 Apply the correction upstream and supply strictly positive values. The code fits a line and computes residuals in log10 space; it does not run significance tests between residual groups.
 

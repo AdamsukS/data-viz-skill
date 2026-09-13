@@ -1,10 +1,12 @@
-# Raw-data requirements and example-data index
+# Data formats and source-study context
 
 [中文](DATA.md) | [English](DATA.en.md)
 
+Templates accept data from any field when they match each figure's documented columns, types, table structure and numeric constraints; update labels and styles too. The table preserves source-study context, not prerequisites for reuse in other domains.
+
 Consult each figure's provenance.json for its source and raw-data availability. Plotting examples and research raw data are distinct; screenshot estimates and simulations are not experimental observations.
 
-| ID | Chart | Current source | Raw information needed |
+| ID | Chart and field documentation | Current source | Source-study context (not general requirements) |
 |---|---|---|---|
 | 01 | [Outlined bars with sample points](../figures/figure01/README.en.md) | `screenshot_estimate` | Sample/animal ID, treatment group and PCNA+ cell count for each replicate. Counting region/length, normalization to 300 μm, replicate unit and exclusion rules. Original comparison method, error-bar definition and multiple-testing settings. |
 | 02 | [PCoA with marginal boxplots](../figures/figure02/README.en.md) | `digitized` | A sample-feature/abundance matrix or sample distance matrix, plus sample-to-group metadata. Distance metric, transformations, PCoA method, axis 1/2 coordinates and explained variation. PERMANOVA model, permutation count and strata, plus the ellipse convention. |

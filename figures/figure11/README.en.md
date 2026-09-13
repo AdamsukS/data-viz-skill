@@ -12,13 +12,19 @@
 
 Original experimental data were not supplied, and a paper/DOI has not been verified. These values demonstrate a reusable chart layout; they are not original research measurements or a pixel-identical reproduction.
 
-## Original data you need
+## General data requirements
+
+**These templates are not limited to bioinformatics data.** Business, engineering, education, survey and other datasets can be used when they match the target CSV column names, types, table structure and numeric constraints. Biological names and units in the field tables describe the current examples; map their meanings to your own metrics while retaining the column names expected by the code.
+
+Start with “Files and columns”, prepare matching inputs, and update categories, labels, units and axis limits in `style.json`. Adjust fixed layouts in `plot.py` when group or panel counts change. The original-data and preprocessing notes below explain the source study context; reusing the chart does not require those biological raw data or analyses. Mathematical constraints still apply, such as positive values on log axes, nonnegative errors and acyclic trees.
+
+## Source-study context: original data
 
 - Original phylogeny with branch lengths, rooting, tip IDs and genus/phylum classifications.
 - Numerator/denominator and resulting BBAA detection fraction per tip, plus bsh presence/absence.
 - BBAA/bsh assay methods and thresholds, genus-sector boundaries and color-scale limits.
 
-## From raw data to plotting inputs
+## Source-study context: preprocessing example
 
 Convert the tree to edges and join annotations. This circular layout aligns terminal nodes to a fixed radius, so displayed terminal lengths are not original branch lengths. Update genus_labels for a replacement tree.
 

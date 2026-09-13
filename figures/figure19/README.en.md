@@ -12,13 +12,19 @@
 
 Original experimental data were not supplied, and a paper/DOI has not been verified. These values demonstrate a reusable chart layout; they are not original research measurements or a pixel-identical reproduction.
 
-## Original data you need
+## General data requirements
+
+**These templates are not limited to bioinformatics data.** Business, engineering, education, survey and other datasets can be used when they match the target CSV column names, types, table structure and numeric constraints. Biological names and units in the field tables describe the current examples; map their meanings to your own metrics while retaining the column names expected by the code.
+
+Start with “Files and columns”, prepare matching inputs, and update categories, labels, units and axis limits in `style.json`. Adjust fixed layouts in `plot.py` when group or panel counts change. The original-data and preprocessing notes below explain the source study context; reusing the chart does not require those biological raw data or analyses. Mathematical constraints still apply, such as positive values on log axes, nonnegative errors and acyclic trees.
+
+## Source-study context: original data
 
 - Single-cell expression, cell types, WT/KO conditions, sample IDs and spatial coordinates or proximity measurements.
 - TGFβRII signature, P14 CD8 T-cell reference population, proximity/distance definition and correlation method.
 - Per-cell-type WT/KO correlations, gene mean expression/positive fractions, two-sample KS values and the Further/Closer/Similar rule.
 
-## From raw data to plotting inputs
+## Source-study context: preprocessing example
 
 Compute correlations, expression summaries, KS and proximity categories upstream. The renderer does not re-infer those statistics from expression and spatial coordinates.
 

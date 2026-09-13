@@ -2,11 +2,11 @@
 
 [中文](README.md) | **English**
 
-Reusable scientific figures in Python. The gallery currently contains 19 reconstructed examples, each with **its own plotting code, CSV demonstration data, JSON style, bilingual data documentation and preview**. Replace data, add chart types, and export PNG, SVG or PDF through a common runner.
+Reusable Python chart templates for data from any field. The gallery currently contains 19 reconstructed examples, each with **its own plotting code, CSV demonstration data, JSON style, bilingual data documentation and preview**. Replace data, add chart types, and export PNG, SVG or PDF through a common runner.
 
 These are approximate reconstructions from raster references, **not pixel-identical reproductions**. Original experimental data were not supplied. CSVs include screenshot estimates, digitized values, synthetic observations and fitted demonstration curves; phylogenetic topologies are synthetic too. Every figure records its provenance. Example values cannot support the original studies' statistical conclusions.
 
-[Browse previews](docs/GALLERY.en.md) · [Original data required by each figure](docs/DATA.en.md) · [Add a figure](CONTRIBUTING.en.md)
+[Browse previews](docs/GALLERY.en.md) · [Data formats and source-study context](docs/DATA.en.md) · [Add a figure](CONTRIBUTING.en.md)
 
 ## Quick start
 
@@ -58,7 +58,17 @@ scripts/build_gallery.py  # Refresh bilingual catalogs
 
 ## Replace the data
 
-Read the target figure's “Original data you need” and “From raw data to plotting inputs” sections first. **Research raw data and plotting CSVs are different layers.** PCoA needs coordinates from an upstream analysis; phylogenetic plots need a real tree; dot plots need summaries computed from expression matrices.
+**Data do not have to come from bioinformatics or any particular discipline.** Read “General data requirements” and “Files and columns” in the target figure's README, then match the CSV column names, types, structure and numeric ranges. Genes and cell groups in the examples can represent business metrics, product categories, devices or survey groups; update display labels, units and styles accordingly.
+
+| Chart type | General-purpose inputs |
+|---|---|
+| Bars, boxes and rainclouds | Grouped observations, or the means, errors and quantiles required by that figure |
+| Scatter and marginal distributions | Two numeric variables and group labels; PCoA is not required |
+| Bubbles and heatmaps | Values across categories, with metrics controlling color and size |
+| Ridgelines | Grouped observations or density curves, using the input mode supported by that figure |
+| Circular trees with annotations | Hierarchical data matching the node, parent-child and annotation tables; phylogenetic data are not required |
+
+The “Source-study context” sections preserve the original example's data and analysis background; **they are not prerequisites for reusing a template**. The `raw_data_required` and `preprocessing` fields in `provenance.json` also describe the source context, not restrictions on other domains. Retain the required column names while mapping their meanings to your field. Mathematical constraints still apply, including positive values on log axes, nonnegative errors and acyclic trees.
 
 ```bash
 cp -R figures/figure07/data my_data
@@ -68,7 +78,7 @@ python render.py --figure 7 --data-dir my_data --out my_output --format png svg 
 
 `--data-dir` accepts one figure's CSV directory, or a parent containing `figure01/`, `figure02/`, etc. for batch replacement. Update auxiliary tables together: figure 17's density, five-number summary and rug tables must describe the same observations.
 
-Use UTF-8 and preserve column names and category values. Numeric columns do not accept missing values, NaN or Infinity. Changing groups, genes, units, panel counts or legend sample counts also requires updating the style. Fixed layouts do not automatically support arbitrary category counts; edit panel coordinates and marker sizes in that figure's `plot.py` as needed.
+Use UTF-8 and retain the required column names. Category values can change, but must match the style configuration. Numeric columns do not accept missing values, NaN or Infinity. Changing groups, metrics, units, panel counts or legend sample counts also requires updating the style. Fixed layouts do not automatically support arbitrary category counts; edit panel coordinates and marker sizes in that figure's `plot.py` as needed.
 
 ```bash
 cp figures/figure07/style.json my_style.json
@@ -108,11 +118,11 @@ panel,group,value
 0,0,2.90
 ```
 
-An actual file must include all groups expected by the style. Gaussian KDE is evaluated per group, with each peak normalized to 1.4 row spacings by default; an optional `height` column controls display height. That height represents neither sample count nor directly comparable absolute probability density across groups. Flow-cytometry observations must already be compensated, gated and transformed using the intended log/logicle/arcsinh procedure; these upstream steps are not implemented here.
+An actual file must include all groups expected by the style. Gaussian KDE is evaluated per group, with each peak normalized to 1.4 row spacings by default; an optional `height` column controls display height. That height represents neither sample count nor directly comparable absolute probability density across groups. When using flow-cytometry data, apply the appropriate compensation, gating and log/logicle/arcsinh transformation first. Other domains should use preprocessing appropriate to their data; these upstream analyses are not implemented here.
 
 ## Figure index
 
-Each link includes raw-data requirements, preprocessing conventions, example provenance, per-file fields/units, sample CSV rows and standalone commands.
+Each link includes general data requirements, per-file fields/units, sample CSV rows and standalone commands, plus source-study context and example-data provenance.
 
 <!-- FIGURES:START -->
 
