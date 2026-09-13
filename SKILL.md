@@ -14,6 +14,8 @@ The core capability is adapting user data to the bundled figures by editing thei
 3. Choose the valid template requiring the fewest changes, including a template whose unsupported layers or panels can simply be removed. A different domain, column naming, fewer groups, missing auxiliary data, or a few extra series is not a reason to design a new figure.
 4. Apply this order: **replace data and labels → edit existing drawing code locally → add/remove elements within the composition → consider a new composition**. New composition is an exception for an explicit user request or substantial new variables/relationships that cannot be represented clearly by local changes. Explain the concrete mismatch before taking that route, and still reuse the nearest code. Never preserve an encoding that misrepresents the data just to retain a layout.
 
+For natural-language data, read [text-data routing](docs/TEXT_DATA.en.md): reuse figure 20 for positioned words, 21 for word-group hierarchies, and 22 for document–word association flows. Use supplied coordinates/hierarchies/weights or derive them with a documented analysis; example positions and simulated links are not semantic evidence for a new corpus. Optional meshes and distribution panels can be disabled without rearranging the remaining layout.
+
 The biological field meanings and `raw_data_required` / `preprocessing` metadata describe source examples. Any domain is supported when data match the actual schema and mathematical constraints. Map concepts to required CSV column names, or modify the copied code and document the new schema. A column named `gene` can represent a product; a hierarchy need not be phylogenetic.
 
 ## Work in the user's project
@@ -54,8 +56,8 @@ The bundled renderer does not automatically handle absent columns or auxiliary f
 Use this route when the new-information threshold above is met, or the user explicitly asks for a new design. Start by extending the nearest copied module; use the scaffold only when that is less suitable. For a separate new module, choose a free ID:
 
 ```bash
-.venv/bin/python -m scripts.new_figure --id 20 --title "新的图表" --title-en "New chart"
-.venv/bin/python -m figures.figure20.plot --format png svg pdf
+.venv/bin/python -m scripts.new_figure --id 23 --title "新的图表" --title-en "New chart"
+.venv/bin/python -m figures.figure23.plot --format png svg pdf
 ```
 
 Follow [the contributor guide](CONTRIBUTING.en.md) only when adding a reusable library example. User-specific charts do not require publishing a template or updating gallery fingerprints. New titles and documentation should describe the user's domain.

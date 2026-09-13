@@ -267,3 +267,45 @@ Source-study context (these biological inputs are not required to reuse the char
 - Single-cell expression, cell types, WT/KO conditions, sample IDs and spatial coordinates or proximity measurements.
 - TGFβRII signature, P14 CD8 T-cell reference population, proximity/distance definition and correlation method.
 - Per-cell-type WT/KO correlations, gene mean expression/positive fractions, two-sample KS values and the Further/Closer/Similar rule.
+
+## 20 · Word map with partition mesh
+
+[Code / data / documentation](../figures/figure20/README.en.md)
+
+427 word/phrase labels were compiled from readable portions of the low-resolution image; wording and placement are approximate, not a verbatim recovery. Colored boundaries were detected and consolidated into vector segments. Original semantic vectors, distances and true partitions were not recovered.
+
+![Word map with partition mesh](../figures/figure20/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
+
+- Words or phrases, unique IDs, 2D positions, categories and emphasis.
+- For semantic interpretation, generate coordinates with your own embeddings/projection and record the method. For layout reuse alone, replace labels while retaining display positions.
+- Optional partition mesh must use the same coordinate system; example boundaries are not semantic partitions for a new corpus.
+
+## 21 · Word-group dendrogram
+
+[Code / data / documentation](../figures/figure21/README.en.md)
+
+Nine visible stacks containing 36 words were transcribed; eight merges and their heights were estimated from the image. Heights are display estimates, not distances computed from original neural responses or word vectors.
+
+![Word-group dendrogram](../figures/figure21/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
+
+- Leaf IDs, displayed word stacks and left-to-right order.
+- A complete binary hierarchy: merge node ID, child IDs and height for each merge. Inputs may come from text clustering, topic hierarchies or other domains.
+- For substantive clustering interpretation, record text representation, distance and clustering method; derive the hierarchy from that actual analysis.
+
+## 22 · Document–word flows and distributions
+
+[Code / data / documentation](../figures/figure22/README.en.md)
+
+Document/topic labels are transcribed with possible reading errors; band positions and ten box summaries are visual estimates. The 300 association curves are simulated with seed 202622, not recovered links or text-analysis results. Blue squares mark path-routing positions and are not additional observations.
+
+![Document–word flows and distributions](../figures/figure22/preview.png)
+
+Source-study context (these biological inputs are not required to reuse the chart):
+
+- Document/document-group IDs and short labels; topic, keyword or word-group IDs, labels and colors.
+- Document-to-topic association rows, such as co-occurrence counts, TF-IDF, topic weights or coded strengths, with a documented definition.
+- Optionally, a defined per-topic metric distribution or ordered five-number summary. The source meaning of Dissemination is unverified; replace it with a defined coverage or other metric.

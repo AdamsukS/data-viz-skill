@@ -16,6 +16,11 @@ Select by the user's variables and communication goal, not the biological titles
 | [14](../figures/figure14/README.en.md), [15](../figures/figure15/README.en.md), [16](../figures/figure16/README.en.md) | Many ordered group distributions | Ridgeline series / matrix | Accept density curves or grouped values; peak-normalized heights are not sample counts |
 | [18](../figures/figure18/README.en.md) | Many grouped summaries across facets | Faceted boxes | Five-number ordering, group/panel labels and sample counts |
 | [19](../figures/figure19/README.en.md) | Several linked measurements on common entities | Correlation, paired endpoints, bubbles and bars | Keep entity ordering consistent; use only panels supported by actual data; adapt fixed labels and correlations |
+| [20](../figures/figure20/README.en.md) | Words/phrases with 2D positions, categories and emphasis | Dense text map with an optional partition mesh | Preserve coordinates for label substitution; recomputed embeddings need a matching mesh or show_mesh=false |
+| [21](../figures/figure21/README.en.md) | Word groups with a supplied hierarchy | Rectangular dendrogram with stacked terminal labels | Preserve merge positions when replacing words; pruning requires consistent child IDs and monotone heights |
+| [22](../figures/figure22/README.en.md) | Document–word associations and optional per-topic distributions | Bundled curves, compact labels and aligned box summaries | Keep the three-column composition; show_dissemination=false skips missing summaries without shifting the other columns |
+
+For raw text and NLP-derived input preparation, read [natural-language data](TEXT_DATA.en.md). These templates render structured inputs; they do not automatically infer semantic positions, clustering or document-topic weights.
 
 ## Reuse first; edit only what the data need
 

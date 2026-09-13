@@ -25,6 +25,7 @@ def prepare(destination, figures=(), root=ROOT):
     (destination / 'scripts').mkdir()
     for name in ('__init__.py', 'new_figure.py', 'build_gallery.py'):
         shutil.copy2(root / 'scripts' / name, destination / 'scripts' / name)
+    next_id = max([0] + [int(folder.name.removeprefix('figure')) for folder in selected]) + 1
     for lang, name in [('zh', 'README.md'), ('en', 'README.en.md')]:
         zh = lang == 'zh'
         content = '# ' + ('可视化工作目录' if zh else 'Visualization workspace') + '\n\n'
@@ -32,7 +33,7 @@ def prepare(destination, figures=(), root=ROOT):
         content += ('由 Data Viz Skill 创建。随附 CSV 是模板演示数据；请接入自己的数据、更新样式，并记录数据映射与处理过程。\n\n' if zh else 'Created by Data Viz Skill. Included CSVs are template demonstrations; supply your data, update styles, and document mappings and preparation.\n\n')
         content += '```bash\npython3 -m venv .venv\n.venv/bin/python -m pip install -r requirements.txt\n.venv/bin/python render.py --list\n```\n\n'
         content += ('替换数据用 `--data-dir`，替换样式用 `--style`，并按需调整 plot.py 的布局。新数据使用 `--annotations none`；需要分组均值与 SEM 时使用 `--summary samples`，已有可信汇总时使用 `--summary provided` 并注明误差定义。\n\n' if zh else 'Use `--data-dir` for replacement data and `--style` for custom styles; adapt plot.py layouts as needed. Use `--annotations none` for new data, `--summary samples` for group means and SEM, or `--summary provided` for intentional precomputed summaries with documented error definitions.\n\n')
-        content += '```bash\npython -m scripts.new_figure --id 20 --title "New chart" --title-en "New chart"\npython -m scripts.build_gallery\n```\n\n'
+        content += f'```bash\npython -m scripts.new_figure --id {next_id} --title "New chart" --title-en "New chart"\npython -m scripts.build_gallery\n```\n\n'
         content += '<!-- FIGURES:START -->\n\n'
         for folder in selected:
             suffix = '' if zh else '.en'

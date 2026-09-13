@@ -8,7 +8,7 @@ git clone --depth 1 https://github.com/AdamsukS/data-viz-skill.git "${CODEX_HOME
 
 上面的命令可由 Agent 在终端直接执行，将完整 Skill 下载到 Codex 的技能目录；需要 Git，目标目录已存在时会停止，避免覆盖已有修改。安装后在下一轮对话中使用 `$data-viz`。安装只下载代码与素材，Python 依赖在实际绘图工作目录中安装。
 
-**让 AI 直接复用已有绘图代码，尽量保留原图布局。** 这个 Skill 包含 19 套可运行的 Python 图式，以及独立数据、配色、版式、字段说明和预览。核心能力是把用户数据接入现有代码，再做必要的局部修改：缺少数据时删去对应元素，少量新增信息优先在原图上扩展。只有大量新变量或关系无法通过局部修改清晰表达，或用户明确要求新设计时，才创造新的构图。数据不限于生信，适用于业务、工程、调查及其他领域。
+**让 AI 直接复用已有绘图代码，尽量保留原图布局。** 这个 Skill 包含 22 套可运行的 Python 图式，以及独立数据、配色、版式、字段说明和预览。核心能力是把用户数据接入现有代码，再做必要的局部修改：缺少数据时删去对应元素，少量新增信息优先在原图上扩展。只有大量新变量或关系无法通过局部修改清晰表达，或用户明确要求新设计时，才创造新的构图。数据不限于生信，适用于业务、工程、调查及其他领域。
 
 ## 如何使用
 
@@ -27,6 +27,7 @@ Agent 会按 **替换数据和标签 → 局部修改现有代码 → 在原布�
 缺失数据不等于零：只有均值时可保留柱形并去掉散点；没有可信误差就移除误差条；缺少插图数据时同时移除插图及其 CSV 读取逻辑。现有渲染器不会自动处理所有缺列情况，Agent 需要在复制的代码中调整数据依赖，不能填入虚构值来维持外观。
 
 - [Skill 指令入口](SKILL.md)：数据检查、选图、绘制、验证与交付流程。
+- [自然语言数据指南](docs/TEXT_DATA.md)：词语空间图、词组层次树和文档—词语关联图。
 - [选图指南](docs/TEMPLATE_SELECTION.md)：按数据结构和表达目标选择模板。
 - [风格指南](docs/STYLE_GUIDE.md)：配色、视觉层次、信息密度与新图设计。
 - [数据格式与原图背景](docs/DATA.md) · [新增模板](CONTRIBUTING.md)。
@@ -49,7 +50,7 @@ python3 -m venv .venv
 
 ## 模板库与手动运行
 
-这些初始案例是从位图参考近似重绘的，**不是像素完全一致的复刻**。当前没有取得原始实验数据；CSV 包括截图估读、数字化提取、模拟观测和拟合曲线，树拓扑也是模拟的。逐图元数据保留来源说明，示例值不能用于原研究的统计结论。
+这些初始案例是从位图参考近似重绘的，**不是像素完全一致的复刻**。当前没有取得原始实验数据；CSV 包括截图估读、数字化提取、模拟观测和拟合曲线，早期环形树的拓扑为模拟，新增词组树的合并关系为按图估读。逐图元数据保留来源说明，示例值不能用于原研究的统计结论。
 
 ## 快速开始
 
@@ -195,6 +196,9 @@ panel,group,value
 | 17 | [区域年代分布 雨云图](figures/figure17/README.md) | `mixed` |
 | 18 | [进化年龄分面箱线图](figures/figure18/README.md) | `screenshot_estimate` |
 | 19 | [相关性 哑铃 气泡 与条形组合图](figures/figure19/README.md) | `screenshot_estimate_and_digitized` |
+| 20 | [词语空间与分区网格](figures/figure20/README.md) | `transcribed_estimated_and_digitized` |
+| 21 | [词组层次聚类树](figures/figure21/README.md) | `transcribed_and_screenshot_estimate` |
+| 22 | [文档—词语关联与分布](figures/figure22/README.md) | `transcribed_estimated_and_synthetic` |
 
 ## 代码绘制效果
 
@@ -314,19 +318,37 @@ panel,group,value
 
 [代码与数据说明](figures/figure19/README.md)
 
+### 20 · 词语空间与分区网格
+
+![词语空间与分区网格](figures/figure20/preview.png)
+
+[代码与数据说明](figures/figure20/README.md)
+
+### 21 · 词组层次聚类树
+
+![词组层次聚类树](figures/figure21/preview.png)
+
+[代码与数据说明](figures/figure21/README.md)
+
+### 22 · 文档—词语关联与分布
+
+![文档—词语关联与分布](figures/figure22/preview.png)
+
+[代码与数据说明](figures/figure22/README.md)
+
 <!-- FIGURES:END -->
 
-## 新增第 20 张图
+## 新增第 23 张图
 
 ```bash
-python -m scripts.new_figure --id 20 --title "新的图表" --title-en "New chart"
-python -m figures.figure20.plot --format png svg
+python -m scripts.new_figure --id 23 --title "新的图表" --title-en "New chart"
+python -m figures.figure23.plot --format png svg
 ```
 
 创建器会生成一个可运行的两组模拟数据案例，且不会覆盖已有图。将它替换为需要的图式：编辑 `plot.py`、`style.json`、`data/`、`provenance.json` 和两份 README，然后更新预览与目录：
 
 ```bash
-cp output/figure20.png figures/figure20/preview.png
+cp output/figure23.png figures/figure23/preview.png
 python -m scripts.build_gallery
 python check_reuse.py
 ```
@@ -338,7 +360,10 @@ python check_reuse.py
 ```bash
 python check_reuse.py
 python check_skill.py
+python check_text_figures.py
 ```
+
+`check_text_figures.py` 验证词组树结构、模拟关联表可复现性、缺失网格/分布的局部关闭，以及三张文本图的独立运行。
 
 `check_skill.py` 另外在隔离目录中接入服务延迟数据，验证独立模板导出 PNG/SVG/PDF、空白工程新建图表，以及已有目录不会被覆盖。
 

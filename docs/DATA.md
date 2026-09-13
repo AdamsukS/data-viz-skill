@@ -27,3 +27,6 @@
 | 17 | [区域年代分布 雨云图](../figures/figure17/README.md) | `mixed` | 每个 dated sample 的 ID、地区和 kyr BP 年代；保留年代不确定性或校准后概率分布。 BP 参考年份、年代校准、样本权重、分布汇总方式和 KDE 带宽。 同一批数据的五数概括和 rug 标记/权重；三份绘图输入必须同步。 |
 | 18 | [进化年龄分面箱线图](../figures/figure18/README.md) | `screenshot_estimate` | 每个旁系同源基因对的 ID、dN、dS 或 dN/dS，以及基因年龄和 Reference/diapause 分组。 序列比对/替代率估计与过滤方法、dS=0 处理、年龄区间定义。 从实际样本计算的箱线概括、whisker 规则、比较检验和校正 P 值。 |
 | 19 | [相关性 哑铃 气泡 与条形组合图](../figures/figure19/README.md) | `screenshot_estimate_and_digitized` | 单细胞表达矩阵、细胞类型、WT/KO 条件、样本 ID，以及细胞空间坐标或邻近度量。 TGFβRII signature、P14 CD8 T cell 参考群、邻近/距离定义与相关方法。 每种细胞类型的 WT/KO 相关系数、指定基因的平均表达/阳性率、两样本 KS 值及 Further/Closer/Similar 判定规则。 |
+| 20 | [词语空间与分区网格](../figures/figure20/README.md) | `transcribed_estimated_and_digitized` | 需要显示的词语或短语、唯一 ID、二维位置、分组与高亮方式。 如果位置具有语义含义，需由自己的词/句向量及降维流程生成并记录方法；若只是复用排版，可直接替换标签、保留展示坐标。 可选分区网格需与同一坐标系匹配；本例网格不能当作新语料的语义边界。 |
+| 21 | [词组层次聚类树](../figures/figure21/README.md) | `transcribed_and_screenshot_estimate` | 每个叶节点的 ID、显示词组和左右顺序。 一棵完整二叉层次树：每次合并的节点 ID、左右子节点 ID 和合并高度。可来自文本聚类、主题层次或其他领域的层次关系。 若要解释为真实文本聚类，需记录文本表示、距离函数、聚类方法；树必须由该分析实际生成。 |
+| 22 | [文档—词语关联与分布](../figures/figure22/README.md) | `transcribed_estimated_and_synthetic` | 文档或文档组的 ID 和短标签；主题、关键词或词组的 ID、标签与类别颜色。 文档—词组关联表：如共现次数、TF-IDF、主题权重或人工编码强度；必须说明自己的权重含义。 可选：每个词组的某项数值指标分布，或同一指标的有序五数概括。Dissemination 在原图中的定义未核实，可替换为自己有定义的覆盖率或其他指标。 |

@@ -4,7 +4,7 @@
 
 ## Minimal figure structure
 
-Run `python -m scripts.new_figure --id 20 --title "新图" --title-en "New figure"`. Each `figures/figureNN/` needs:
+Run `python -m scripts.new_figure --id 23 --title "新图" --title-en "New figure"`. Each `figures/figureNN/` needs:
 
 - `plot.py` implementing `draw(context, rows)`, runnable from the repository root with `python -m figures.figureNN.plot`.
 - `style.json` with an ID matching its directory, canvas settings and the main CSV filename.
@@ -39,7 +39,7 @@ Do not edit repository fingerprints when changing your private CSVs. Update `pro
 ```python
 from pathlib import Path
 import hashlib
-p = Path("figures/figure20/data/figure20.csv")
+p = Path("figures/figure23/data/figure20.csv")
 print(hashlib.sha256(p.read_bytes()).hexdigest())
 ```
 
@@ -48,8 +48,8 @@ Initial examples used NumPy seed 190913, but a cross-figure random stream and ma
 ## Checks before publishing
 
 ```bash
-python -m figures.figure20.plot --format png svg
-cp output/figure20.png figures/figure20/preview.png
+python -m figures.figure23.plot --format png svg
+cp output/figure23.png figures/figure23/preview.png
 python -m scripts.build_gallery
 python check_reuse.py
 ```
