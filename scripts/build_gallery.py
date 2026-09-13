@@ -1,0 +1,46 @@
+"""Refresh the bilingual catalog and README index from discovered figure metadata."""
+import json
+from pathlib import Path
+from render import ROOT, discover
+
+
+def build(root=ROOT):
+    root = Path(root)
+    (root / "docs").mkdir(exist_ok=True)
+    figures = discover(root)
+    for lang in ["zh", "en"]:
+        zh = lang == "zh"
+        suffix = "" if zh else ".en"
+        gallery = ["# " + ("图表目录" if zh else "Figure gallery"), "",
+                   "[中文](GALLERY.md) | [English](GALLERY.en.md)", ""]
+        data_index = ["# " + ("原始数据需求与示例数据索引" if zh else "Raw-data requirements and example-data index"), "",
+                      "[中文](DATA.md) | [English](DATA.en.md)", "",
+                      ("来源和原始数据是否可得，以每张图的 provenance.json 为准。示例值与科研原始数据不是同一层次；截图估读和模拟数据不能冒充实验观测。" if zh else "Consult each figure's provenance.json for its source and raw-data availability. Plotting examples and research raw data are distinct; screenshot estimates and simulations are not experimental observations."), "",
+                      "| ID | " + ("图式 | 当前来源 | 所需原始信息 |" if zh else "Chart | Current source | Raw information needed |"), "|---|---|---|---|"]
+        table = ["| ID | " + ("图式 | 数据来源 |" if zh else "Chart | Data provenance |"), "|---|---|---|"]
+        for number, folder in figures.items():
+            meta = json.loads((folder / "provenance.json").read_text(encoding="utf-8"))
+            name = folder.name
+            title = meta["title"][lang]
+            table.append(f'| {number:02d} | [{title}](figures/{name}/README{suffix}.md) | `{meta["classification"]}` |')
+            data_index.append(f'| {number:02d} | [{title}](../figures/{name}/README{suffix}.md) | `{meta["classification"]}` | '+" ".join(meta["raw_data_required"][lang])+" |")
+            gallery += [f"## {number:02d} · {title}", "", f'[Code / data / documentation](../figures/{name}/README{suffix}.md)', "",
+                        meta["provenance"][lang], ""]
+            if (folder / "preview.png").is_file():
+                gallery += [f'![{title}](../figures/{name}/preview.png)', ""]
+            gallery += ["- " + raw for raw in meta["raw_data_required"][lang]] + [""]
+        (root / "docs" / f"GALLERY{suffix}.md").write_text("\n".join(gallery), encoding="utf-8")
+        (root / "docs" / f"DATA{suffix}.md").write_text("\n".join(data_index)+"\n", encoding="utf-8")
+        readme = root / f"README{suffix}.md"
+        if readme.is_file():
+            content = readme.read_text(encoding="utf-8")
+            start, end = "<!-- FIGURES:START -->", "<!-- FIGURES:END -->"
+            if start in content and end in content:
+                before, rest = content.split(start, 1)
+                _, after = rest.split(end, 1)
+                readme.write_text(before + start + "\n\n" + "\n".join(table) + "\n\n" + end + after, encoding="utf-8")
+    print(f"Updated bilingual catalog for {len(figures)} figures.")
+
+
+if __name__ == "__main__":
+    build()
