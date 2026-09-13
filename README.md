@@ -138,6 +138,124 @@ panel,group,value
 | 18 | [进化年龄分面箱线图](figures/figure18/README.md) | `screenshot_estimate` |
 | 19 | [相关性 哑铃 气泡 与条形组合图](figures/figure19/README.md) | `screenshot_estimate_and_digitized` |
 
+## 代码绘制效果
+
+以下图片均由各图的 Python 代码与随附示例数据生成。
+
+### 01 · 空心柱状图与散点
+
+![空心柱状图与散点](figures/figure01/preview.png)
+
+[代码与数据说明](figures/figure01/README.md)
+
+### 02 · PCoA 与边缘箱线图
+
+![PCoA 与边缘箱线图](figures/figure02/preview.png)
+
+[代码与数据说明](figures/figure02/README.md)
+
+### 03 · 多队列 PCoA 组合图
+
+![多队列 PCoA 组合图](figures/figure03/preview.png)
+
+[代码与数据说明](figures/figure03/README.md)
+
+### 04 · 时间序列与 iAUC 插图
+
+![时间序列与 iAUC 插图](figures/figure04/preview.png)
+
+[代码与数据说明](figures/figure04/README.md)
+
+### 05 · 半小提琴 雨云图
+
+![半小提琴 雨云图](figures/figure05/preview.png)
+
+[代码与数据说明](figures/figure05/README.md)
+
+### 06 · 断轴分组柱状图
+
+![断轴分组柱状图](figures/figure06/preview.png)
+
+[代码与数据说明](figures/figure06/README.md)
+
+### 07 · 基因表达分组柱状图
+
+![基因表达分组柱状图](figures/figure07/preview.png)
+
+[代码与数据说明](figures/figure07/README.md)
+
+### 08 · PARP1 变体柱状图
+
+![PARP1 变体柱状图](figures/figure08/preview.png)
+
+[代码与数据说明](figures/figure08/README.md)
+
+### 09 · 双轴嵌套柱状图
+
+![双轴嵌套柱状图](figures/figure09/preview.png)
+
+[代码与数据说明](figures/figure09/README.md)
+
+### 10 · 环形系统发育树与分类注释
+
+![环形系统发育树与分类注释](figures/figure10/preview.png)
+
+[代码与数据说明](figures/figure10/README.md)
+
+### 11 · 环形系统发育树与热图
+
+![环形系统发育树与热图](figures/figure11/preview.png)
+
+[代码与数据说明](figures/figure11/README.md)
+
+### 12 · 分组基因气泡矩阵
+
+![分组基因气泡矩阵](figures/figure12/preview.png)
+
+[代码与数据说明](figures/figure12/README.md)
+
+### 13 · 双对数散点与边缘直方图
+
+![双对数散点与边缘直方图](figures/figure13/preview.png)
+
+[代码与数据说明](figures/figure13/README.md)
+
+### 14 · 三组分子动力学山脊图
+
+![三组分子动力学山脊图](figures/figure14/preview.png)
+
+[代码与数据说明](figures/figure14/README.md)
+
+### 15 · 流式细胞术山脊矩阵
+
+![流式细胞术山脊矩阵](figures/figure15/preview.png)
+
+[代码与数据说明](figures/figure15/README.md)
+
+### 16 · 细胞群表达山脊矩阵
+
+![细胞群表达山脊矩阵](figures/figure16/preview.png)
+
+[代码与数据说明](figures/figure16/README.md)
+
+### 17 · 区域年代分布 雨云图
+
+![区域年代分布 雨云图](figures/figure17/preview.png)
+
+[代码与数据说明](figures/figure17/README.md)
+
+### 18 · 进化年龄分面箱线图
+
+![进化年龄分面箱线图](figures/figure18/preview.png)
+
+[代码与数据说明](figures/figure18/README.md)
+
+### 19 · 相关性 哑铃 气泡 与条形组合图
+
+![相关性 哑铃 气泡 与条形组合图](figures/figure19/preview.png)
+
+[代码与数据说明](figures/figure19/README.md)
+
 <!-- FIGURES:END -->
 
 ## 新增第 20 张图
@@ -172,3 +290,7 @@ python check_reuse.py
 ## 许可证
 
 [MIT](LICENSE) 适用于本项目代码和项目撰写的说明。模拟/估读数据的性质逐文件记载；本仓库不声称拥有或授予参考论文、原始研究数据或第三方图片的权利。
+
+---
+
+图片复刻来源于 **Nature**。以上展示为本项目代码生成的复现图；具体论文及 DOI 尚待补充。
