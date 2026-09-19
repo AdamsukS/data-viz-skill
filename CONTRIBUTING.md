@@ -4,7 +4,7 @@
 
 ## 新图的最小结构
 
-运行 `python -m scripts.new_figure --id 23 --title "新图" --title-en "New figure"`。每个 `figures/figureNN/` 需要：
+运行 `python -m scripts.new_figure --id 24 --title "新图" --title-en "New figure"`。每个 `figures/figureNN/` 需要：
 
 - `plot.py`：实现 `draw(context, rows)`；从仓库根目录用 `python -m figures.figureNN.plot` 运行。
 - `style.json`：`id` 与文件夹编号一致，包含画布配置与主 CSV 文件名。
@@ -39,7 +39,7 @@
 ```python
 from pathlib import Path
 import hashlib
-p = Path("figures/figure23/data/figure20.csv")
+p = Path("figures/figure24/data/figure24.csv")
 print(hashlib.sha256(p.read_bytes()).hexdigest())
 ```
 
@@ -48,8 +48,8 @@ print(hashlib.sha256(p.read_bytes()).hexdigest())
 ## 发布前检查
 
 ```bash
-python -m figures.figure23.plot --format png svg
-cp output/figure23.png figures/figure23/preview.png
+python -m figures.figure24.plot --format png svg
+cp output/figure24.png figures/figure24/preview.png
 python -m scripts.build_gallery
 python check_reuse.py
 ```
