@@ -25,6 +25,7 @@ CHANGES = {
     15: ("density", .75), 16: ("density", .75), 17: ("density", .75),
     18: ("median", .9), 19: ("wt", .82),
     20: ("x", .82), 21: ("height", .82), 22: ("weight", .65),
+    23: ("amplitude", .82),
 }
 
 

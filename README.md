@@ -201,6 +201,7 @@ panel,group,value
 | 20 | [词语空间与分区网格](figures/figure20/README.md) | `transcribed_estimated_and_digitized` |
 | 21 | [词组层次聚类树](figures/figure21/README.md) | `transcribed_and_screenshot_estimate` |
 | 22 | [文档—词语关联与分布](figures/figure22/README.md) | `transcribed_estimated_and_synthetic` |
+| 23 | [时序函数生成与完整分布评估](figures/figure23/README.md) | `deterministic_synthetic_inspired_by_published_layout` |
 
 ## 代码绘制效果
 
@@ -338,19 +339,25 @@ panel,group,value
 
 [代码与数据说明](figures/figure22/README.md)
 
+### 23 · 时序函数生成与完整分布评估
+
+![时序函数生成与完整分布评估](figures/figure23/preview.png)
+
+[代码与数据说明](figures/figure23/README.md)
+
 <!-- FIGURES:END -->
 
-## 新增第 23 张图
+## 新增第 24 张图
 
 ```bash
-python -m scripts.new_figure --id 23 --title "新的图表" --title-en "New chart"
-python -m figures.figure23.plot --format png svg
+python -m scripts.new_figure --id 24 --title "新的图表" --title-en "New chart"
+python -m figures.figure24.plot --format png svg
 ```
 
 创建器会生成一个可运行的两组模拟数据案例，且不会覆盖已有图。将它替换为需要的图式：编辑 `plot.py`、`style.json`、`data/`、`provenance.json` 和两份 README，然后更新预览与目录：
 
 ```bash
-cp output/figure23.png figures/figure23/preview.png
+cp output/figure24.png figures/figure24/preview.png
 python -m scripts.build_gallery
 python check_reuse.py
 ```

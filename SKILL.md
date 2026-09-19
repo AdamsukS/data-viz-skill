@@ -64,8 +64,8 @@ Examples include raw points + a mean + justified uncertainty; distribution shape
 Start by extending the nearest copied module; use the scaffold only when that is less suitable. For a separate new module, choose a free ID:
 
 ```bash
-.venv/bin/python -m scripts.new_figure --id 23 --title "新的图表" --title-en "New chart"
-.venv/bin/python -m figures.figure23.plot --format png svg pdf
+.venv/bin/python -m scripts.new_figure --id 24 --title "新的图表" --title-en "New chart"
+.venv/bin/python -m figures.figure24.plot --format png svg pdf
 ```
 
 Follow [the contributor guide](CONTRIBUTING.en.md) only when adding a reusable library example. User-specific charts do not require publishing a template or updating gallery fingerprints. New titles and documentation should describe the user's domain.
