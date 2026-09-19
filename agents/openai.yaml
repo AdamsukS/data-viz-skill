@@ -1,4 +1,4 @@
 interface:
   display_name: "Data Viz"
-  short_description: "Reuse chart code with minimal layout changes"
-  default_prompt: "Use $data-viz from https://github.com/AdamsukS/data-viz-skill to directly reuse the closest template code, preserve its layout, and add or remove elements to fit my data; create a new composition only when substantial new information requires it or I explicitly ask."
+  short_description: "Reuse chart code and layer complementary data views"
+  default_prompt: "Use $data-viz from https://github.com/AdamsukS/data-viz-skill to reuse suitable plotting code wherever practical, suggest useful missing inputs such as repeated experiment results, and combine supported complementary perspectives in one clear figure while retaining suitable layouts."

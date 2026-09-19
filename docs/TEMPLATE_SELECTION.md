@@ -24,19 +24,19 @@ For raw text and NLP-derived input preparation, read [natural-language data](TEX
 
 ## Reuse first; edit only what the data need
 
-Replace data and labels first. Modify the copied `plot.py` only where grouping loops, input handling, data layers or hardcoded labels need to change. Keep unaffected axes positions, panel order, typography and color assignments. `style.json` is not a universal layout engine; changing it alone may not remove a required CSV load or a fixed group loop.
+Reuse as much suitable code as practical, starting with data and label replacement. Before removing a useful information layer, identify what data would enable it and ask for a targeted supplement if it materially helps the user's goal. Continue the supported parts when that supplement is optional. Modify the copied `plot.py` locally and retain suitable axes positions, panel order, typography and colors. `style.json` is not a universal layout engine; changing it alone may not remove a required CSV load or a fixed group loop.
 
 | Situation | Preferred local adaptation |
 |---|---|
-| Figure 07 has group means but no sample-level observations | Keep its bars and layout; remove sample-dot code and unsupported error bars; adapt the schema to supplied summaries |
+| Figure 07 has group means but no sample-level observations | Ask whether individual repeated-experiment values and group/sample IDs are available to overlay points and justified variability; meanwhile keep supported means, omitting unavailable dots/errors |
 | Figure 04 has time-series data but no inset summary | Keep the main axes, line palette and legend; remove the inset and its auxiliary-data load |
 | Figure 19 has only some of its linked metrics | Retain the supported panels and entity ordering; disable missing panels and their labels/loads |
 | A selected template has fewer groups than its example | Remove absent groups from loops, ticks and legends; retain the remaining groups' colors and panel placement |
 | There are a few extra series or an extra metric | Extend the existing series/legend or add a compatible layer locally; do not redesign the full figure |
 | Many new independent variables or relationships cannot fit through local edits | Explain what the original composition cannot express, then extend or create a composition using the nearest existing code |
 
-Missing data are not zero values. Derive summaries from actual observations only when justified; otherwise omit the unsupported layer. If the missing variable is essential to the encoding itself, use another bundled template or request the input. Never keep example observations to make the original layout look full.
+Missing data are not zero values. Explain the useful perspective that a supplement would enable, rather than asking broadly for more data. Distinguish independent experiments from technical repeats. Derive summaries from actual observations only when justified; if inputs remain unavailable, omit the unsupported layer. If a variable is essential to the encoding, use another valid template or request the input. Never keep example observations to make the original layout look full.
 
-New designs are exceptional: use them for explicit user requests or substantial new information that cannot be represented accurately and readably by adapting a template. A different domain, renamed columns or missing auxiliary files is not sufficient. Even for a new composition, reuse existing modules and `vizlib/common.py` instead of rebuilding equivalent drawing logic.
+New designs are exceptional: use them for explicit user requests or substantial new information that cannot be represented accurately and readably by adapting a template. A different domain, renamed columns or missing auxiliary files is not sufficient. In creative work, reuse existing modules and `vizlib/common.py` wherever practical and combine complementary views in one figure: observations with summaries and uncertainty, or relationships with marginal distributions. Prefer overlays with compatible coordinates; use linked insets/panels when scales differ. Do not default to unrelated standalone charts or overload one axis.
 
 Use [the style guide](STYLE_GUIDE.md) for palette, hierarchy and information density. For schemas, use the per-figure **Files and columns** sections. The **Source-study context** sections are background, not input requirements for other domains.

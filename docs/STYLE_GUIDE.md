@@ -1,6 +1,22 @@
 # Visual language for adapted and new charts
 
-Use the user's requested style first. Otherwise preserve the selected template's existing code, composition and visual settings. Apply this guide to necessary local edits; it is not an invitation to redesign a working template. New compositions are reserved for substantial new information that cannot fit through local edits or for explicit user requests. This is a reusable visual language, not an official Nature style standard.
+Use the user's requested style first and reuse existing plotting code wherever practical. Preserve suitable template layouts and visual settings. When creative changes are needed, emphasize complementary information layered into one coherent figure. This is a reusable visual language, not an official Nature style standard.
+
+## Multiple perspectives in one figure
+
+Identify a main question, then combine supported perspectives on the same observations or entities. Shared-coordinate overlays are preferred when scales and units are compatible. A compact inset, marginal distribution or aligned panel can carry a perspective that needs its own scale while remaining part of the same figure.
+
+| Composition | Perspectives brought together | Required inputs / nearby code |
+|---|---|---|
+| Raw points over bars with error caps | Individual outcomes, group mean and variability | Repeated observations with group/sample IDs, or separately justified summaries; figures 01/07/08 |
+| Half-violin + box + points/rug | Distribution shape, quantiles and individual observations | Observations from the same population; figures 05/17 |
+| Scatter + trend/interval + marginals | Association, estimated trend/uncertainty and one-variable distributions | Paired x/y observations and a justified fit when used; reuse figures 02/03/13 and add only supported layers |
+| Word positions + color/emphasis + links | Spatial or semantic placement, categories and relationships | Defined coordinates, label/category metadata and actual links; figures 20/22 |
+| Bubble matrix with color and area | Two metrics for the same category pairs | Documented metrics and separate legends; figure 12 |
+
+Check which inputs exist before designing the layers. If repeated experiment results would enable points and variability, ask for individual values with group, experiment/sample IDs and units. If only means exist and no additional data are available, keep the mean layer; do not invent a distribution. Do not request unnecessary new measurements solely to fill a template.
+
+Make layers readable through draw order, restrained opacity, marker size and line weight: for example, a pale distribution behind a narrow summary and visible observations. Keep category colors consistent across layers. Avoid hiding extreme observations under fills, implying pairing without IDs, or using arbitrary dual-axis scaling to make unrelated trends overlap. Add a layer for a distinct useful perspective, not merely to make the image denser.
 
 ## Color
 
@@ -35,4 +51,4 @@ Maintain enough space for labels, units, legends and colorbars. Resolve overlap 
 
 ## Final inspection
 
-Compare the rendered composition against the selected preview and account for each layout change. Inspect at the intended reading size, then zoom to investigate clipping or overlaps. Check the smallest labels, longest category names, extreme values, color/size legends, and any inset. Removed layers must leave no stale legend entries or statistical text. Verify export dimensions; inspect SVG/PDF when vector editing or print use matters. Deliver the adapted code, its template origin and a documented data mapping.
+Compare the rendered composition against the selected preview and account for meaningful layout changes. Check that each overlaid perspective has supporting data and can be distinguished from the others; verify shared units, populations and entity keys. Inspect at the intended reading size, then zoom to investigate clipping or overlaps. Check the smallest labels, longest category names, extreme values, color/size legends, and any inset. Removed layers must leave no stale legend entries or statistical text. Verify export dimensions; inspect SVG/PDF when vector editing or print use matters. Deliver the adapted code, its template origin and a documented data mapping.
