@@ -1,6 +1,6 @@
 # Choose a starting template
 
-Select by the user's variables and communication goal, not the biological titles of the source examples. Prefer the valid template requiring the fewest edits, including one with removable layers for unavailable data. Read its schema and implementation, then copy its actual code. The previews in [the gallery](GALLERY.en.md) are layout references to preserve by default, not merely aesthetic inspiration.
+Select by the user's variables and communication goal, not the biological titles of the source examples. Prefer the valid template requiring the fewest edits, including one with removable layers for unavailable data. Read its schema and implementation, then copy its actual code. The previews in [the gallery](GALLERY.en.md) guide reuse of data encodings and layout. For user outputs, tighten excess whitespace, move narrative headings/captions outside the image, and label main panels `(a)`, `(b)`, … according to [the style guide](STYLE_GUIDE.md).
 
 | IDs | Data / question | Reusable encoding | Adaptation to inspect |
 |---|---|---|---|

@@ -10,6 +10,8 @@ Directly reuse the code in `figures/figure20`–`figure22`. Select by available 
 | Hierarchy between word groups | [21 · Word-group dendrogram](../figures/figure21/README.en.md) | Terminal word-stack table and merge table with child IDs/heights |
 | Document-to-word associations with optional metric distributions | [22 · Association flows](../figures/figure22/README.en.md) | Link weights, document bands and topic bands; boxes can be disabled |
 
+Prefer frequencies, proportions, association strengths, distributions or justified semantic structure for multidimensional information. Keep words as necessary data identifiers and put analysis or descriptive topic summaries outside the image. Tighten excess whitespace in user outputs and mark main panels `(a)`, `(b)`, etc., with explanations in an external caption.
+
 ## When only raw text is available
 
 Establish the observation unit and communication goal: words, phrases, sentences, documents or document groups. Preserve original text-to-ID mappings and record tokenization, deduplication, filtering, aggregation and normalization in a separate preparation script.
@@ -24,7 +26,7 @@ Use suitable existing analysis outputs directly. If essential semantics or hiera
 
 Figure 20 without a mesh: set `show_mesh` to `false`; no mesh CSV is loaded. Remove label rows for missing words; a few new labels can occupy available positions.
 
-Figure 21 without a leaf: prune the hierarchy and collapse single-child branches, updating the merge table rather than only deleting a label. Change `heading` when the data are not neural responses.
+Figure 21 without a leaf: prune the hierarchy and collapse single-child branches, updating the merge table rather than only deleting a label. For user outputs, set `heading` to an empty string and move the description outside the image. Clear `panel_label` for a standalone chart, or use its corresponding `(a)`-style marker within a composite figure.
 
 Figure 22 without dissemination/coverage data: set `show_dissemination` to `false`; the summary CSV is not loaded and the document/word columns retain their positions. A partial summary table draws boxes only for supplied topics. Add modest numbers of associations as new link rows, and remove irrelevant labels after pruning.
 

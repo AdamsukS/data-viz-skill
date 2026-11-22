@@ -1,11 +1,21 @@
 ---
 name: data-viz
-description: Visualize data by reusing and adapting bundled Python chart code wherever practical. Suggest useful missing inputs such as repeated measurements, and combine complementary information layers in one coherent figure when creative adaptation is needed. Use for static PNG/SVG/PDF figures across any domain.
+description: Create compact, multidimensional statistical figures by reusing Python chart code. Keep analysis and descriptive text outside the image, label multi-panel figures (a), (b), and suggest useful missing data such as repeated measurements. Use for PNG/SVG/PDF visualizations across domains.
 ---
 
 # Data Viz
 
 Reuse as much relevant plotting code as practical: start with an existing `plot.py`, `style.json`, and shared helpers, then adapt them to the user's data and communication goal. Preserve a suitable template's layout, palette and visual hierarchy when they work. For creative adaptations, a defining style is to show complementary perspectives together in one figure, often with overlaid marks sharing coordinates, supported by insets or margins when appropriate. Follow explicit user requests for a different chart or style.
+
+## Default figure composition
+
+Make the figure moderately compact: reduce unused outer margins and excessive panel gaps, align related axes, and share repeated legends/axis labels where clear. Keep readable text sizes and enough space to distinguish data layers; do not compress by hiding observations or shrinking everything.
+
+Show multidimensional **statistical information** through marks and encodings: observations, distributions, estimates, uncertainty, relationships and category comparisons. Keep analysis, conclusions, captions, overall titles, panel subtitles, explanatory callouts and descriptive prose outside the exported image, in the response or a companion caption file. Retain essential axis labels, units, ticks, concise legend keys and data/category identifiers. Even for language data, prioritize measured frequencies, associations, distributions or justified semantic structure; words can identify observations but should not become blocks of exposition.
+
+For a multi-panel figure, label the main panels exactly `(a)`, `(b)`, `(c)`, … in reading order, with consistent size and placement near each panel's upper-left edge. Use those markers instead of descriptive panel headings; explain each panel outside the image. A marginal axis, colorbar or inset belonging to one panel does not automatically need a separate letter.
+
+These defaults govern adapted/new user figures even when a bundled reconstruction contains source titles, annotations or wide margins. Remove those narrative elements from the copied code and reclaim the space locally; preserve the useful data layout. `--annotations none` suppresses reference statistical annotations but does not automatically remove every hardcoded title or text artist. See [the style guide](docs/STYLE_GUIDE.md) for implementation and checks.
 
 ## Choose a route from the data
 
@@ -38,7 +48,7 @@ Prepare user-specific CSVs and style settings in this workspace. Store a reprodu
   --out ./output --format png svg pdf --annotations none --summary samples
 ```
 
-Choose `--summary provided` only for intentional precomputed summaries; document whether error is SD, SEM, or CI. Existing grouped-bar schemas may still require `mean,error` columns; inspect the specific draw function and supply truthful summaries or adapt its input handling. Auxiliary tables must refer to the same observations and category keys. Update labels, units, legends, ranges and hardcoded domain text to match the data. Keep existing axes rectangles, panel order, canvas proportions, typography and category colors by default. Different group counts alone do not require repositioning unaffected panels.
+Choose `--summary provided` only for intentional precomputed summaries; document whether error is SD, SEM, or CI outside the image. Existing grouped-bar schemas may still require `mean,error` columns; inspect the specific draw function and supply truthful summaries or adapt its input handling. Auxiliary tables must refer to the same observations and category keys. Update essential labels, units, legends and ranges; remove copied narrative headings and explanations. Retain the useful panel order, visual hierarchy and category colors, while tightening excess margins or gaps. Different group counts alone do not require reorganizing the figure.
 
 ## Adapt incomplete or additional data in place
 
@@ -68,16 +78,18 @@ Start by extending the nearest copied module; use the scaffold only when that is
 .venv/bin/python -m figures.figure24.plot --format png svg pdf
 ```
 
-Follow [the contributor guide](CONTRIBUTING.en.md) only when adding a reusable library example. User-specific charts do not require publishing a template or updating gallery fingerprints. New titles and documentation should describe the user's domain.
+Follow [the contributor guide](CONTRIBUTING.en.md) only when adding a reusable library example. User-specific charts do not require publishing a template or updating gallery fingerprints. External captions, titles and documentation should describe the user's domain.
 
 ## Preserve meaning while borrowing style
 
 Retain the selected template's colors, density and visual hierarchy. Layer complementary information deliberately: use draw order, transparency, restrained line weights and consistent category colors so observations, summaries and context remain distinguishable. Every added layer should answer a useful question and have data support. For a demonstrated overlap or clipping issue, adjust locally before reorganizing the composition. Keep interpretable encodings: quantitative bubble area, consistent scales, clearly defined uncertainty, and legible labels. Density is useful comparisons per area, not arbitrary numbers of marks.
 
-Do not transfer example P values, sample counts, correlations, fitted ellipses, significance stars, or biological labels into new results. For user data start with `--annotations none`; add statistics only when actually computed by a justified, recorded method. Example fingerprints are not a mechanism for validating new results. Log axes require positive values; trees require a valid hierarchy; missing values need an explicit treatment. The renderer does not perform domain analysis such as PCoA, PERMANOVA, sequencing, or flow-cytometry preprocessing.
+Do not transfer example P values, sample counts, correlations, fitted ellipses, significance stars, or biological labels into new results. For user data start with `--annotations none`. Statistics must be computed by a justified, recorded method; put textual test reports, significance explanations and methodological notes outside the figure by default. Show data-derived statistical marks only when supported, and add textual statistical annotations only if explicitly requested. Example fingerprints are not a mechanism for validating new results. Log axes require positive values; trees require a valid hierarchy; missing values need an explicit treatment. The renderer does not perform domain analysis such as PCoA, PERMANOVA, sequencing, or flow-cytometry preprocessing.
 
 ## Render, inspect, and deliver
 
 Render a PNG and compare its composition with the selected template's preview. Check that layout changes are justified by data, readability or the user's request; undo incidental redesigns. Inspect at normal reading size for labels, clipping, legend mapping, units, axis limits, overlap, density, and consistency with source values. For removed layers, check that no stale legends, statistics or missing-file dependencies remain. Inspect representative extremes and recompute a displayed summary when applicable. Fix demonstrated problems and render again. Prefer vector SVG/PDF when the user wants editable or publication output; platform fonts can change appearance.
 
-Deliver the requested image(s), runnable Python code, the data schema and mapping, a replay command, and necessary preparation steps. Name the reused modules and explain what each information layer shows; summarize added/removed elements and meaningful layout changes. Mention missing data that prevented a useful layer and the specific inputs that could enable it, without repeating requests the user has already declined. Include data only within the user's sharing scope. Explain estimated/simulated values or unperformed analysis when relevant. Never claim pixel identity with source images or original experimental data recovery.
+Before delivery, confirm that the canvas is compact but legible, communicates supported statistical dimensions, contains no narrative/title/caption text, and has complete, consistently placed `(a)`, `(b)`, … markers for its main panels. Check the exported PNG/SVG/PDF themselves, not only the plotting source.
+
+Deliver the requested image(s), runnable Python code, the data schema and mapping, a replay command, and necessary preparation steps. In the response or a separate caption file, name the reused modules, explain the information layers and map `(a)`, `(b)`, … to their panel descriptions. Keep analysis, captions and descriptive explanations out of the image. Summarize meaningful changes and any missing data that prevented a useful layer, without repeating requests already declined. Include data only within the user's sharing scope. Explain estimated/simulated values or unperformed analysis when relevant. Never claim pixel identity with source images or original experimental data recovery.
